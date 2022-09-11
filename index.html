@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./favicon.ico" />
+
+    <title>QR Code Generator API Challenge</title>
+
+    <!-- <meta http-equiv="refresh" content="60"> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@700&family=Work+Sans:wght@200;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+    <link href="./style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="index.html">QR Code</a></h1>
+    </header>
+    <main>
+      <h2>Generate your QR Code</h2>
+      <p>Adjust the settings below to make your QR code look as you want</p>
+      <form action="">
+        <div class="setting">
+          <label for="text/link">Text / URL:</label>
+          <p>Include text or a URL you want the QR code to lead to</p>
+          <input type="text" name="text/link" id="text/link" />
+        </div>
+
+        <div class="setting">
+          <div class="qr-background">
+            <div>
+              <label for="main-color">Main Color</label>
+              <input
+                type="color"
+                name="main-color"
+                id="main-color"
+                value="#000000"
+              />
+              <span>#000000</span>
+            </div>
+            <div>
+              <label for="background-color">Background Color</label>
+              <input
+                type="color"
+                name="background-color"
+                id="background-color"
+                value="#8a8a8a"
+              />
+              <span>#8a8a8a</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting">
+          <label for="size">Size</label>
+          <span>200 x 200</span>
+          <input type="range" name="size" id="size"
+          min="100" max="1000" />
+        </div>
+
+        <div class="setting">
+          <label for="margin">Margin</label>
+          <span>2px</span>
+          <input type="range" name="margin" id="margin"
+          min="0" max="50" />
+        </div>
+        <div class="setting">
+          <fieldset>
+            <legend>Image Format</legend>
+            <div>
+            <label for="png">
+              <input type="radio" name="png" id="png" />
+              PNG </label>
+            </div>
+            <div>
+                <label for="gif">
+              <input type="radio" name="gif" id="gif" />
+             GIF</label>
+            </div>
+            <div>
+            <label for="jpeg">
+              <input type="radio" name="jpeg" id="jpeg" />
+             JPEG</label>
+            </div>
+            <div>
+            <label for="jpg">
+              <input type="radio" name="jpg" id="jpg" />
+             JPG</label>
+            </div>
+            <div>
+                <label for="svg">
+              <input type="radio" name="svg" id="svg"/>
+             SVG</label>
+            </div>
+          </fieldset>
+        </div>
+      </form>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
