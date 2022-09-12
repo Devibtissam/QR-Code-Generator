@@ -223,7 +223,7 @@ form div.setting fieldset div label {
   justify-content: space-around;
 }
 
-form div.setting fieldset div input[type='radio'] {
+form div.setting fieldset div input[type='checkbox'] {
   /* remove standard background appearance */
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -239,7 +239,7 @@ form div.setting fieldset div input[type='radio'] {
   border-radius: 50%;
 }
 
- form div.setting fieldset div input[type='radio']:checked {
+ form div.setting fieldset div input[type='checkbox']:checked {
   background-color: var(--orangeClr);
   padding: 2px;
 }
