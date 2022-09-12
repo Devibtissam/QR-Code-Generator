@@ -28,6 +28,7 @@ body {
   font-family: 'Work Sans', sans-serif;
   font-size: 1rem;
   line-height: 1.5;
+  height: 100%;
 }
 
 header {
@@ -42,18 +43,66 @@ header h1 {
   border-bottom: 1px solid var(--silverClr);
   width: max-content;
   padding-bottom: 0.25rem;
+  color: coral;
 }
-main {
-  background-color: var(--maiWhite);
-  margin: 2rem 1rem;
-  padding: 1.5rem 1rem;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-  box-shadow: 1px 2px 5px var(--silverClr);
+
+main{
+  position: relative;
+  perspective: 150rem;
+  transform-style: preserve-3d;
+  margin-inline: 1rem;
+  display: flex;
+  justify-content: center;
+  height: 950px;
 }
+
+main section {
+   background-color: var(--maiWhite);
+   padding: 1.5rem 1rem;
+   border-radius: 15px;
+   -webkit-border-radius: 15px;
+   -moz-border-radius: 15px;
+   -ms-border-radius: 15px;
+   -o-border-radius: 15px;
+   box-shadow: 1px 2px 5px var(--silverClr);
+   position: absolute;
+   max-width: 550px;
+   min-height:700px;
+   backface-visibility: hidden;
+   -webkit-backface-visibility: hidden;
+   transition: all .5s ease;
+   -webkit-transition: all .5s ease;
+   -moz-transition: all .5s ease;
+   -ms-transition: all .5s ease;
+   -o-transition: all .5s ease;
+}
+
+main section#qr-setting.flipped{
+  transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+}
+
+main section#qr-scanning{
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+}
+
+main section#qr-scanning.flipped{
+   transform: rotateY(0);
+   -webkit-transform: rotateY(0);
+   -moz-transform: rotateY(0);
+   -ms-transform: rotateY(0);
+   -o-transform: rotateY(0);
+}
+
+
+
 
 main h2 {
   text-align: center;
@@ -61,30 +110,34 @@ main h2 {
   margin-top: 1rem;
 }
 
-main > p {
+main section > p,
+main section div.edit > p {
   margin: 1rem 0.25rem;
   font-weight: 200;
   text-align: center;
 }
 
-main form div.setting {
+form div.setting {
   margin-block: 2rem;
 }
 
-main form div.setting label,
-main form div.setting fieldset legend {
+form div.setting label,
+form div.setting fieldset legend {
   font-weight: 500;
 }
 
-main form div.setting p,
-main form div.setting span {
+
+form div.setting p,
+form div.setting span {
   font-weight: 200;
   font-size: 0.85rem;
   margin-bottom: 0.25rem;
   display: block;
 }
 
-main form div.setting input[type='text'] {
+
+
+form div.setting input[type='text'] {
   border: 1px solid var(--silverClr);
   padding-block: 0.456rem;
   border-radius: 5px;
@@ -96,29 +149,34 @@ main form div.setting input[type='text'] {
   outline: none;
 }
 
-main form div.setting input[type='text']:focus {
+form div.setting input[name='text/link'].error{
+  border: 2px solid red;
+}
+
+
+form div.setting input[type='text']:focus {
   border: 2px solid var(--orangeClr);
   color: var(--orangeClr);
 }
 
-main form div.setting div.qr-background {
+form div.setting div.qr-background {
   display: flex;
   flex-direction: column;
   /* justify-content: space-around; */
   align-items: center;
 }
 
-main form div.setting div.qr-background > div {
+form div.setting div.qr-background > div {
   text-align: center;
   margin-block-end: 0.5rem;
 }
 
-main form div.setting div.qr-background > div > input {
+ form div.setting div.qr-background > div > input {
   margin-inline: auto;
   margin-top: 1rem;
 }
 
-main form div.setting input[type='range'] {
+form div.setting input[type='range'] {
   -webkit-appearance: none;
   width: 100%;
   height: 5px;
@@ -127,7 +185,7 @@ main form div.setting input[type='range'] {
   outline: none;
 }
 
-main form div.setting input[type='range']::-webkit-slider-thumb {
+form div.setting input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 15px;
@@ -137,7 +195,7 @@ main form div.setting input[type='range']::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-main form div.setting input[type='range']::-moz-range-thumb {
+ form div.setting input[type='range']::-moz-range-thumb {
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -145,12 +203,12 @@ main form div.setting input[type='range']::-moz-range-thumb {
   cursor: pointer;
 }
 
-main form div.setting fieldset {
+form div.setting fieldset {
   border: none;
   padding-block: 1rem;
 }
 
-main form div.setting fieldset div {
+form div.setting fieldset div {
   border: 1px solid var(--silverClr);
   display: inline-block;
   width: 75px;
@@ -159,13 +217,13 @@ main form div.setting fieldset div {
   padding: 0.125rem;
 }
 
-main form div.setting fieldset div label {
+form div.setting fieldset div label {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-main form div.setting fieldset div input[type='radio'] {
+form div.setting fieldset div input[type='radio'] {
   /* remove standard background appearance */
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -181,24 +239,57 @@ main form div.setting fieldset div input[type='radio'] {
   border-radius: 50%;
 }
 
-main form div.setting fieldset div input[type='radio']:checked {
+ form div.setting fieldset div input[type='radio']:checked {
   background-color: var(--orangeClr);
   padding: 2px;
 }
 
-@media (min-width: 500px) {
-  main {
-    max-width: 450px;
-    margin-inline: auto;
-    padding: 2.5rem 1.5rem;
-  }
+ form input[type='submit'],
+ section#qr-scanning input[type=button]{
+  background-color: var(--orangeClr);
+  width: max-content;
+  padding: 0.5rem 1.5rem;
+  margin-inline: auto;
+  outline: none;
+  border: 2px solid var(--orangeClr);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
 
-  main > p {
+ form input[type='submit']:hover,
+  section#qr-scanning input[type=button]:hover{
+  transform: translateY(-0.5rem);
+  transition: all 0.5s ease-out;
+ 
+}
+
+ form input[type='submit']:disabled{
+  cursor: not-allowed;
+  transform: none;
+  transition: none;
+}
+
+
+footer{
+  /* padding-block: 2rem; */
+  text-align: center;
+  margin-top: 1rem;
+}
+
+@media (min-width: 500px) {
+ 
+
+  main section > p {
     max-width: 80%;
     margin-inline: auto;
   }
 
-  main form div.setting div.qr-background {
+   form div.setting div.qr-background {
     flex-direction: row;
     justify-content: space-around;
   }
