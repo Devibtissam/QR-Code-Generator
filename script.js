@@ -1,7 +1,7 @@
 const generateBtn = document.querySelector('[data-generate-qr-btn]');
 const editBtn = document.querySelector('[data-go-back-btn]');
 const flippedCards = document.querySelectorAll('section');
-const url = document.querySelector('[data-url]');
+const data = document.querySelector('[data-url]');
 const mainColor = document.querySelector('input#main-color');
 const bgColor = document.querySelector('input#background-color');
 const size = document.querySelector('input#size');
@@ -9,8 +9,8 @@ const margin = document.querySelector('input#margin');
 const format = document.querySelectorAll('input[type=radio]');
 const QRCodeContainer = document.querySelector('.qr-image');
 const QRImg = document.querySelector('.qr-code');
-
-
+const marginValue = document.querySelector('.margin-value');
+const sizeValue = document.querySelector('.size-value');
 
 const btns = [generateBtn, editBtn];
 
@@ -24,30 +24,28 @@ function getFormatValue(checkboxes) {
 }
 
 // check that url not emply
-function validUrl(url) {
-  if (url.value.length >= 1) {
+function validData(data) {
+  if (data.value.length >= 1) {
     generateBtn.disabled = false;
-    url.classList.remove('error');
+    data.classList.remove('error');
     return true;
   } else {
     generateBtn.disabled = true;
-    url.classList.add('error');
+    data.classList.add('error');
     return false;
   }
 }
 
-const  getParams = params => {
- return {
-   format: params.imageFormat,
-   data: params.urlVal,
-   size: `${params.sizeVal}x${params.sizeVal}`,
-   color: params.mainColorVal.replace('#', ''),
-   bgcolor: params.bgColorVal.replace('#', ''),
-   qzone: params.marginVal,
- };
-
-
-}
+const getParams = (params) => {
+  return {
+    format: params.imageFormat,
+    data: params.dataVal,
+    size: `${params.sizeVal}x${params.sizeVal}`,
+    color: params.mainColorVal.replace('#', ''),
+    bgcolor: params.bgColorVal.replace('#', ''),
+    qzone: params.marginVal,
+  };
+};
 
 getQRCode = async (parameters) => {
   const UrlParams = new URLSearchParams(parameters).toString();
@@ -62,23 +60,43 @@ getQRCode = async (parameters) => {
 
 displayQRCode = async () => {
   const imageFormat = getFormatValue(format);
-  const urlVal = url.value;
+  const dataVal = data.value;
   const mainColorVal = mainColor.value;
   const bgColorVal = bgColor.value;
   const sizeVal = size.value;
   const marginVal = margin.value;
 
-
-  const parameters = getParams({imageFormat,urlVal,mainColorVal, bgColorVal,sizeVal,marginVal})
+  const parameters = getParams({
+    imageFormat,
+    dataVal,
+    mainColorVal,
+    bgColorVal,
+    sizeVal,
+    marginVal,
+  });
   const srcImg = await getQRCode(parameters);
   QRImg.src = srcImg;
-  QRImg.alt = "QR Code";
+  QRImg.alt = 'QR Code';
   QRCodeContainer.appendChild(QRImg);
 };
 
-url.addEventListener('change', () => {
-  validUrl(url);
+data.addEventListener('change', () => {
+  validData(data);
 });
+
+// update size & margin
+const updateSizeValue = (e) => {
+  const val = e.target.value;
+  sizeValue.innerHTML = `${val}x${val}`;
+};
+
+const updateMarginVal = (e) => {
+  const val = e.target.value;
+  marginValue.innerHTML = `${val}px`;
+};
+
+size.addEventListener('change', updateSizeValue);
+margin.addEventListener('change', updateMarginVal);
 
 btns.forEach((btn) => {
   btn.addEventListener('click', (e) => {
@@ -89,5 +107,3 @@ btns.forEach((btn) => {
     flippedCards.forEach((card) => card.classList.toggle('flipped'));
   });
 });
-
-
