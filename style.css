@@ -113,7 +113,7 @@ main h2 {
 main section > p,
 main section div.edit > p {
   margin: 1rem 0.25rem;
-  font-weight: 200;
+  font-weight: 500;
   text-align: center;
 }
 
@@ -129,7 +129,7 @@ form div.setting fieldset legend {
 
 form div.setting p,
 form div.setting span {
-  font-weight: 200;
+  font-weight: 500;
   font-size: 0.85rem;
   margin-bottom: 0.25rem;
   display: block;
