@@ -16,5 +16,5 @@ Communication tool:
 
 ```
 ## Preview
-![](./Screen%20Shot%202022-09-13%20at%2021.22.55.png)
-![](./Screen%20Shot%202022-09-13%20at%2021.39.18.png)
+
+<img src="./preview.gif"  style="border-radius:10px;margin-bottom:1rem;" />
